@@ -56,19 +56,11 @@ class Equipment extends Model
     $alerts = [];
 
             if ($expiryAlert = $this->expiry_alert) {
-            $alerts[] = [
-                'type' => 'expiry',
-                'status' => $expiryAlert,
-                'message' => $this->getExpiryMessage($expiryAlert)
-            ];
+            $alerts[] = $expiryAlert;
         }
 
         if ($maintenanceAlert = $this->maintenance_alert) {
-            $alerts[] = [
-                'type' => 'maintenance',
-                'status' => $maintenanceAlert,
-                'message' => $this->getMaintenanceMessage()
-            ];
+            $alerts[] = $maintenanceAlert;
         }
 
         return $alerts;
@@ -76,13 +68,13 @@ class Equipment extends Model
 
     }
 
-    private function getExpiryMessage($status){
-        return $status === self::EXPIRED 
-        ? 'This equipment has expired' 
-        : 'This equipment will expire within 30 days'; 
-    }
+    // private function getExpiryMessage($status){
+    //     return $status === self::EXPIRED 
+    //     ? 'This equipment has expired' 
+    //     : 'This equipment will expire within 30 days'; 
+    // }
 
-    private function getMaintenanceMessage(){
-        return "Last maintenance was more than 6 months ago";
-    }
+    // private function getMaintenanceMessage(){
+    //     return "Last maintenance was more than 6 months ago";
+    // }
 }
